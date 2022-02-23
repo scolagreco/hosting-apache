@@ -28,6 +28,6 @@ Il DB va a finire nella directory "*DATA/mysql*", la documentroot (ovvero la */v
 
 ## Utilizzo
 
-* # *git clone https://github.com/scolagreco/hosting-apache.git*
+* *git clone https://github.com/scolagreco/hosting-apache.git*
 
-* # *docker-compose pull; docker-compose down -v; docker-compose up -d; docker-compose logs -f*
+* *docker-compose pull; docker-compose down -v; docker-compose up -d; docker-compose logs -f*
