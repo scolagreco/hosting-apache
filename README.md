@@ -24,10 +24,20 @@ Il file *mysqld.cnf* è da cambiare se proprio necessario.
 
 I file *revaliases* e *ssmtp.conf* sono da modificare al bisogno se si ha l'esigenza di inviare mail dal CMS.
 
-Il DB va a finire nella directory "*DATA/mysql*", la documentroot (ovvero la */var/www* del container) è invece in "*DATA/wwww*".
+Il DB va a finire nella directory "*$PWD/DATA/mysql*", la documentroot (ovvero la */var/www* del container) è invece in "*$PWD/DATA/wwww*".
 
 ## Utilizzo
 
 * *git clone https://github.com/scolagreco/hosting-apache.git*
-
+* *cd hosting-apache*
 * *docker-compose pull; docker-compose down -v; docker-compose up -d; docker-compose logs -f*
+
+Andare con il browser:
+
+* http://localhost
+
+Per il webserver+php.
+
+* http://localhost:90
+
+Per Adminer. 

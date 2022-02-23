@@ -40,11 +40,11 @@ volumes:
   webdata:
     driver_opts:
       type: none
-      device: ./DATA/www
+      device: $PWD/DATA/www
       o: bind
 
   dbdata:
     driver_opts:
       type: none
-      device: ./DATA/mysql
+      device: $PWD/DATA/mysql
       o: bind
