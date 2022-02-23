@@ -1,0 +1,50 @@
+version: '2'
+services:
+    mysqlserver:
+      cpu_quota: 50000
+      restart: always
+      image: scolagreco/docker-mysql:5.7.17
+      ports:
+        - 3306
+      env_file:
+        - db_credential.env
+      volumes:
+        - dbdata:/var/lib/mysql
+        - ./mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf:ro
+
+    webserver:
+      cpu_quota: 50000
+      restart: always
+      image: scolagreco/alpine_apache_php-fpm:php-7.4
+      depends_on:
+        - mysqlserver
+      environment:
+        - domain=example.org
+      ports:
+        - 80:80
+      links:
+        - mysqlserver        
+      volumes:
+        - ./ssmtp.conf:/etc/ssmtp/ssmtp.conf:ro
+        - ./revaliases:/etc/ssmtp/revaliases:ro
+        - /dev/urandom:/dev/random
+        - webdata:/var/www
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 90:8080
+
+volumes:
+  webdata:
+    driver_opts:
+      type: none
+      device: ./DATA/www
+      o: bind
+
+  dbdata:
+    driver_opts:
+      type: none
+      device: ./DATA/mysql
+      o: bind
